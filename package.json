@@ -29,6 +29,7 @@
     "dotenv": "^17.2.3",
     "grammy": "^1.39.3",
     "https-proxy-agent": "^7.0.6",
+    "qs": "^6.14.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "trading-signals": "^7.4.3",
