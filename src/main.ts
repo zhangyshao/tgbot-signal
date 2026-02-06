@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import { TimeoutInterceptor } from './common/interceptors/timeout';
 import { TransformInterceptor } from './common/interceptors/res.transform';
-import { validationPipe } from './common/constants/valid.config';
+import { validationPipe } from './common/config/class-valid';
 
 dotenv.config()
 async function bootstrap() {

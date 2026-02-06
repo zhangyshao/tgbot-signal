@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, Method, AxiosError } from "axios";
-import { AxiosConfig } from "../constants/axios.config";
+import { AxiosConfig } from "../config/axios";
 
 class AxiosClient {
 

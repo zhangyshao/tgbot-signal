@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import * as winston from 'winston';
-import { WinstonInstance } from "src/common/constants/winston.config";
+import { WinstonInstance } from "src/common/config/winston";
 import { FormatErrorDetails } from "src/common/utils/str";
 
 @Injectable()
