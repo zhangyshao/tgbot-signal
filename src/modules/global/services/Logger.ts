@@ -13,7 +13,7 @@ export class LoggerService {
     this.logger = WinstonInstance
   }
 
-  get winstonInstance() {
+  static winstonInstance() {
 
     return WinstonInstance
   }
