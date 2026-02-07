@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import * as winston from 'winston';
 import { WinstonInstance } from "src/common/config/winston";
-import { FormatErrorDetails } from "src/common/utils/str";
 
 @Injectable()
 export class LoggerService {
@@ -18,35 +17,56 @@ export class LoggerService {
     return WinstonInstance
   }
 
-  error(error: unknown, msg?: string) {
+  error<T>(msg: string, error?: T) {
 
-    const { stack, trace, cause } = error as any
-    const errorMsg = msg || FormatErrorDetails(error)
+    let stack;
 
-    this.logger.error(errorMsg, { stack: trace || cause?.stack || stack })
+    if (error && typeof error === "object") {
+
+      const { stack: errStack, trace, cause } = error as any
+      stack = trace || cause?.stack || errStack
+    }
+
+    this.logger.error(msg, { stack })
   }
 
-  info(error: unknown, msg?: string) {
+  info<T>(msg: string, info?: T) {
 
-    const { stack, trace, cause } = error as any
-    const errorMsg = msg || FormatErrorDetails(error)
+    let stack;
 
-    this.logger.info(errorMsg, { stack: trace || cause?.stack || stack })
+    if (info && typeof info === "object") {
+
+      const { stack: errStack, trace, cause } = info as any
+      stack = trace || cause?.stack || errStack
+    }
+
+    this.logger.info(msg, { stack })
   }
 
-  warn(error: unknown, msg?: string) {
 
-    const { stack, trace, cause } = error as any
-    const errorMsg = msg || FormatErrorDetails(error)
+  warn<T>(msg: string, warn?: T) {
 
-    this.logger.warn(errorMsg, { stack: trace || cause?.stack || stack })
+    let stack;
+
+    if (warn && typeof warn === "object") {
+
+      const { stack: errStack, trace, cause } = warn as any
+      stack = trace || cause?.stack || errStack
+    }
+
+    this.logger.warn(msg, { stack })
   }
 
-  debug(error: unknown, msg?: string) {
+  debug<T>(msg: string, debug?: T) {
 
-    const { stack, trace, cause } = error as any
-    const errorMsg = msg || FormatErrorDetails(error)
+    let stack;
 
-    this.logger.debug(errorMsg, { stack: trace || cause?.stack || stack })
+    if (debug && typeof debug === "object") {
+
+      const { stack: errStack, trace, cause } = debug as any
+      stack = trace || cause?.stack || errStack
+    }
+
+    this.logger.debug(msg, { stack })
   }
 }

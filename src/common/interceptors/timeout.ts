@@ -12,9 +12,26 @@ import { catchError, timeout } from 'rxjs/operators';
 export class TimeoutInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
 
+    const requestType = context.getType()
+
+    let timeOutMs = 30 * 1000
+
+    switch (requestType) {
+
+      case "http":
+        if (context.switchToHttp().getRequest().method !== "POST") {
+
+          timeOutMs = 10 * 1000
+        }
+        break
+      case "ws":
+        break
+      default:
+    }
+
     return next.handle()
       .pipe(
-        timeout(60 * 60 * 1000),
+        timeout(timeOutMs),
         catchError(err => {
 
           if (err instanceof TimeoutError) {

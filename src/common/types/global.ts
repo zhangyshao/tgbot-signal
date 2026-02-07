@@ -14,3 +14,10 @@ export class ResponseDataType<T> {
 export interface PrimitiveResponseData<T> {
   data: T
 }
+
+export interface ErrorResponse {
+  statusCode: number;
+  timestamp: string;
+  path: string;
+  message: string;
+}
